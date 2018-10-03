@@ -36,6 +36,13 @@
           <!-- Button triggers new singer to be added -->
           <input id="add-singer" type="submit" value="Submit" class="btn btn-primary">
         </form>
+
+        <br><br>
+
+        <div>
+          <p class="listprevsingers">Last 5 Singers Added</p>
+        </div>
+        
       </div>
 
     </div>
@@ -45,7 +52,25 @@
       // Initial array of singers
       var singers = ["Linkin Park", "Backstreet Boys", "Britney Spears", "NSync","Foo Fighters"];
 
+      var last5singers = 
+        localStorage.getItem("LSArray") == null ? 
+        last5singers = [] : last10singers = JSON.parse(localStorage.getItem("LSArray"));
+
+        if ($(".listresult").length >= 1) {
+          $(".listresult").remove()
+        }
+
+        $.each(last5singers, function(index, value){
+            var listtag = $("<li>");
+            listtag.addClass("listresult")
+            listtag.text(value);
+            $(".listprevsingers").append(listtag)
+        });      
+
+
       // displaySingerInfo function re-renders the HTML to display the appropriate content
+
+
       function displaySingerInfo() {
         $(".imgDiv").remove();
 
@@ -141,6 +166,31 @@
 
         // Adding singer from the textbox to our array
         singers.push(singer);
+        
+        
+        // Add last 5 searches
+        last5singers.push(singer);
+
+        if (last5singers.length > 5) {
+          last5singers.shift()
+        }
+
+        localStorage.setItem("LSArray", JSON.stringify(last5singers));
+
+        if ($(".listresult").length >= 1) {
+          $(".listresult").remove()
+        }
+
+        $.each(last5singers, function(index, value){
+            var listtag = $("<li>");
+            listtag.addClass("listresult")
+            listtag.text(value);
+            $(".listprevsingers").append(listtag)
+        });
+                
+        
+        
+        
 
         // Calling renderButtons which handles the processing of our singer array
         renderButtons();
