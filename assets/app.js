@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
       // Initial array of singers
-      var singers = ["Linkin Park", "Backstreet Boys", "Britney Spears", "NSync","Foo Fighters"];
+      var singers = ["Tony Braxton","Linkin Park", "Backstreet Boys", "Britney Spears", "NSync","Foo Fighters","LFO","TLC","Spice Girls","Destiny Child"];
 
       var last5singers = 
         localStorage.getItem("LSArray") == null ? 
