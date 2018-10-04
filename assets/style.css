@@ -29,3 +29,7 @@ body {
 .imgDiv {
     margin: .15em;
 }
+
+.space {
+    padding-bottom: 3em;
+}
